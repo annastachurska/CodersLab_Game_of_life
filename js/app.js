@@ -149,17 +149,20 @@ document.addEventListener("DOMContentLoaded", function(){
     var maxWidth = Math.floor(window.innerWidth/10) - 20;
     var maxHeight = Math.floor(window.innerHeight/10) - 20;
 
+    document.querySelector('.introduction_button').addEventListener('click', function(){
+        document.querySelector('.introduction').style.display = 'none';
+        var widthSize = prompt("Set the board width (1 to " + maxWidth + ")");
+        while ( !( (Number(widthSize) > 0) && (Number(widthSize) <= maxWidth) ) ){
+            var widthSize = prompt("Chosen width must be from 1 to "+ maxWidth + "\n Set the board width");
+        }
+        var heightSize = prompt("Set the board height (1 to " + maxHeight + ")");
+        while ( !( (Number(heightSize) > 0) && (Number(heightSize) <= maxHeight) ) ){
+            var heightSize = prompt("Chosen height must be from 1 to "+ maxHeight + "\n Set the board height");
+        }
 
-    var widthSize = prompt("Podaj szerokość planszy (1 do " + maxWidth + ")");
-    while ( !( (Number(widthSize) > 0) && (Number(widthSize) <= maxWidth) ) ){
-        var widthSize = prompt("Podana wielkość musi być z zakresu 1 do "+ maxWidth + "\n Podaj szerokość planszy");
-    }
-    var heightSize = prompt("Podaj wysokość planszy (1 do " + maxHeight + ")");
-    while ( !( (Number(heightSize) > 0) && (Number(heightSize) <= maxHeight) ) ){
-        var heightSize = prompt("Podana wielkość musi być z zakresu 1 do "+ maxHeight + "\n Podaj wysokość planszy");
-    }
+        var game = new GameOfLife(widthSize, heightSize);
+        game.start();
+    });
 
-    var game = new GameOfLife(widthSize, heightSize);
-    game.start();
 
 });
