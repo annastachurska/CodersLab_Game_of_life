@@ -1,12 +1,9 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
-
-# Gra Game of Life
+# Game_of_life
 The game was created in the frame of Coders Lab class during course JavaScript developer: React.
 
-# CodersLab_Game_of_life
-Technology: HTML5, CSS3, JS, ES6.
+**Technology:** HTML5, CSS3, JS, ES6.
 
-**Instalation** No additional items are required for instalation. For cloning use git clone command.
+**Instalation:** No additional items are required for instalation. For cloning use git clone command.
 
 **Description**
 The board is composed of cells. The user can set the width and height of the board. Living cell is coloured black and dead cell is white.
