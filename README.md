@@ -13,5 +13,10 @@ The board is composed of cells. The user can set the width and height of the boa
 
 The game simulates the life of cells. When living cell is surrounded by 2 or 3 living cells it will continue living and in other case it will die.
 If cell is dead it starts to live when it is surrounded by 3 living cells.
+In the game three buttons are available: play (starting the simulation), pause (pausing the simulation) and reset (clears the board).
+
+
+**Features**
+The game can be stopped, reset and played by clicking the proper buttons.
 
 **Status:** completed.
