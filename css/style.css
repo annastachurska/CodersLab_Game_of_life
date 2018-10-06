@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
@@ -79,8 +80,22 @@ body {
 
 /* styling of game menu containing play and pause buttons */
 #game-menu {
-    margin: 50px auto;
+    border: 1px solid black;
+    padding: 10px 10px 5px 10px;
+    height: 50px;
+    margin: 30px auto;
     width: auto;
     position: absolute;
     left: 50%;
+    background-color: #209aff;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+#game-menu button {
+    margin: 0 10px;
 }
