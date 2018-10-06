@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // }
 
 
-        //function assesing the cell next state
+        //function to determine the cell next state
         // returns 0 if cell will die or 1 if it will live
         computeCellNextState(x,y) {
             // selecting neighbouring cells
@@ -196,22 +196,28 @@ document.addEventListener("DOMContentLoaded", function(){
     let maxWidth = Math.floor(window.innerWidth/10) - 20;
     let maxHeight = Math.floor(window.innerHeight/10) - 20;
 
-    // handling the introductory section
-    // asking the user for size of board with respent to window inner sizes, checking if chosen values fill the conditions
-    document.querySelector('.introduction_button').addEventListener('click', function(){
+    function handleGameStart(){
         document.querySelector('.introduction').style.display = 'none';
         let widthSize = prompt("Set the board width (1 to " + maxWidth + ")");
         while ( !( (Number(widthSize) > 0) && (Number(widthSize) <= maxWidth) ) ){
-            let widthSize = prompt("Chosen width must be from 1 to "+ maxWidth + "\n Set the board width");
+            widthSize = prompt("Chosen width must be from 1 to "+ maxWidth + "\n Set the board width");
         }
         let heightSize = prompt("Set the board height (1 to " + maxHeight + ")");
         while ( !( (Number(heightSize) > 0) && (Number(heightSize) <= maxHeight) ) ){
-            let heightSize = prompt("Chosen height must be from 1 to "+ maxHeight + "\n Set the board height");
+            heightSize = prompt("Chosen height must be from 1 to "+ maxHeight + "\n Set the board height");
         }
+
+        document.querySelector('.board_container').style.display = 'block';
 
         // creating and starting the game
         let game = new GameOfLife(widthSize, heightSize);
         game.start();
+    }
+
+    // handling the introductory section
+    // asking the user for size of board with respent to window inner sizes, checking if chosen values fill the conditions
+    document.querySelector('.introduction_button').addEventListener('click', function(){
+        handleGameStart();
     });
 
 
