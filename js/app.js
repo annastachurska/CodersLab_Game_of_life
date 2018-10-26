@@ -35,14 +35,16 @@ document.addEventListener("DOMContentLoaded", function(){
             return this.cells[indexNumber];
         }
 
+        // unnecessary functions (setCellState() and firstGlider()) - to set the state of cells beforehand - used for selection of cells before playing
         // function to change the state of living of selected cell (element of board) based on its position (x,y)
-        setCellState(x, y, state) {
-            if (this.cellIndex(x,y).className.indexOf(state) == -1) {
-                this.cellIndex(x,y).classList.toggle(state);
-            }
-        }
+        // setCellState(x, y, state) {
+        //     if (this.cellIndex(x,y).className.indexOf(state) == -1) {
+        //         this.cellIndex(x,y).classList.toggle(state);
+        //     }
+        // }
 
-        // function to set the state of cells beforehand - used for selection of cells before playing
+        // unnecessary functions (setCellState() and firstGlider()) - to set the state of cells beforehand - used for selection of cells before playing
+        // function to change the state of selected cells - used for selection of cells before playing
         // firstGlider() {
         //     this.setCellState(2,2, 'live');
         //     this.setCellState(5,2, 'live');
