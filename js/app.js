@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function(){
             this.height = boardHeight; // setting the board height based on intormation from user
             this.board = document.getElementById("board"); // selecting the board-containing element
             this.cells = []; // elements of the board
+            this.playBtn = document.getElementById("play"); //play button
+            this.pauseBtn = document.getElementById("pause"); //pause button
+            this.resetBtn = document.getElementById("reset"); //reset button
         }
 
         //creating board based of this.width and this.height
@@ -148,15 +151,15 @@ document.addEventListener("DOMContentLoaded", function(){
         // it sets id of interval as this.idSetInterval
         // it disables plays button after clicking
         play() {
-            let play = document.getElementById("play");
             let self = this;
-            play.addEventListener("click", function() {
+            this.playBtn.addEventListener("click", function() {
                 // console.log(this);
-                this.setAttribute('disabled',true);
+                self.pauseBtn.disabled = false;
+                this.disabled = true;
+                // this.setAttribute('disabled',true);
                 self.idSetInterval = setInterval(function() {
                     self.printNextGeneration();
                 }, 1000);
-                return self.idSetInterval;
             });
         }
 
@@ -164,11 +167,10 @@ document.addEventListener("DOMContentLoaded", function(){
         // stops the game by clearing the interval
         // enables clicking on play button after clicking on pause button
         pause() {
-            let pauseBtn = document.getElementById("pause");
-            let play = document.getElementById("play");
             let self = this;
-            pauseBtn.addEventListener("click", function() {
-                play.disabled = false;
+            this.pauseBtn.addEventListener("click", function() {
+                self.playBtn.disabled = false;
+                this.disabled = true;
                 clearInterval(self.idSetInterval);
             });
         }
@@ -178,11 +180,11 @@ document.addEventListener("DOMContentLoaded", function(){
         // enables clicking on play button after clicking on pause button
         // removes all classes live from cells
         reset() {
-            let resetBtn = document.getElementById("reset");
-            let play = document.getElementById("play");
             let self = this;
-            resetBtn.addEventListener("click", function() {
-                play.removeAttribute("disabled");
+            this.resetBtn.addEventListener("click", function() {
+                self.playBtn.disabled = false;
+                self.pauseBtn.disabled = true;
+                //play.removeAttribute("disabled");
                 clearInterval(self.idSetInterval);
                 for (let j=0; j < self.cells.length; j++) {
                         if (self.cells[j].className.indexOf("live") !== -1) {
@@ -194,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     };
 
-    // setting the maxWidth and maxheight of the board based on window inner sizes
+    // setting the maxWidth and maxHeight of the board based on window inner sizes
     let maxWidth = Math.floor(window.innerWidth/10) - 20;
     let maxHeight = Math.floor(window.innerHeight/10) - 20;
 
