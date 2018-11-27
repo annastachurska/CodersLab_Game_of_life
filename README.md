@@ -1,7 +1,7 @@
 # Game_of_life
 The game was created in the frame of Coders Lab class during course JavaScript developer: React.
 
-**Technology:** HTML5, CSS3, JS, ES6.
+**Technology:** HTML5, CSS3 and JS.
 
 **Instalation:** No additional items are required for instalation. For cloning use git clone command.
 
