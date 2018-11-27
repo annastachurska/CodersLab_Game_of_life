@@ -16,14 +16,14 @@ document.addEventListener("DOMContentLoaded", function(){
         createBoard() {
             this.board.style.width = String(this.width * 10) + "px";
             this.board.style.height = String(this.height * 10) + "px";
-            const numberOfElements = this.width * this.height;
-            for (let i=0; i < numberOfElements; i++) {
-                let newDiv = document.createElement("div");
+            var numberOfElements = this.width * this.height;
+            for (var i=0; i < numberOfElements; i++) {
+                var newDiv = document.createElement("div");
                 this.board.appendChild(newDiv);
             }
             this.cells = document.querySelectorAll("#board div");
         //adding eventlistener to the board elements for mouseover change the class thus the color of the element
-            for (let j=0; j < this.cells.length; j++) {
+            for (var j=0; j < this.cells.length; j++) {
                 this.cells[j].addEventListener("mouseover", function() {
                     if (this.className.indexOf("live") == -1) {
                         this.classList.toggle("live");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         //function enabling location element on the board based on x-axis and y-axis
         cellIndex(x, y) {
-            let indexNumber = x + y*this.width;
+            var indexNumber = x + y*this.width;
             return this.cells[indexNumber];
         }
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // returns 0 if cell will die or 1 if it will live
         computeCellNextState(x,y) {
             // selecting neighbouring cells
-            const neighbourArray =[];
+            var neighbourArray =[];
             if ( (x != 0) && (y != 0) ) {
                 neighbourArray.push(this.cellIndex(x-1, y-1));
             }
@@ -86,10 +86,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 neighbourArray.push(this.cellIndex(x+1, y+1));
             }
 
-            let counter = 0; //counter of living neighbour cells
+            var counter = 0; //counter of living neighbour cells
 
             // counting living neighbour cells with class live - living cells
-            for (let i=0; i < neighbourArray.length; i++) {
+            for (var i=0; i < neighbourArray.length; i++) {
                 if (neighbourArray[i].className.indexOf("live") != -1) {
                     counter++;
                 }
@@ -114,9 +114,9 @@ document.addEventListener("DOMContentLoaded", function(){
         // creating new array with updated state of cells based on function computeCellNextState(function work for 1 cell)
         // it returns array filled with 0(dead) and 1(alive) corresponding to the board
         computeNextGeneration() {
-            const futureArray =[];
-            for (let i=0; i < this.height; i++) {
-                for (let j=0; j < this.width; j++) {
+            var futureArray =[];
+            for (var i=0; i < this.height; i++) {
+                for (var j=0; j < this.width; j++) {
                     futureArray.push(this.computeCellNextState(j, i));
                 }
             }
@@ -126,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function(){
         // function changing classes of board elements (live) based on computeNextGeneration()
         // based on information 0 or 1 from computeNextGeneration() it adds classess -> colors for elements/cells
         printNextGeneration() {
-            const newList = this.computeNextGeneration();
-            for (let i=0; i < this.cells.length; i++) {
+            var newList = this.computeNextGeneration();
+            for (var i=0; i < this.cells.length; i++) {
                 if ((this.cells[i].className.indexOf('live') == -1) && (newList[i] == 1)) {
                     this.cells[i].classList.add('live');
                 }
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // it sets id of interval as this.idSetInterval
         // it disables plays button after clicking
         play() {
-            let self = this;
+            var self = this;
             this.playBtn.addEventListener("click", function() {
                 // console.log(this);
                 self.pauseBtn.disabled = false;
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function(){
         // stops the game by clearing the interval
         // enables clicking on play button after clicking on pause button
         pause() {
-            let self = this;
+            var self = this;
             this.pauseBtn.addEventListener("click", function() {
                 self.playBtn.disabled = false;
                 this.disabled = true;
@@ -180,13 +180,13 @@ document.addEventListener("DOMContentLoaded", function(){
         // enables clicking on play button after clicking on pause button
         // removes all classes live from cells
         reset() {
-            let self = this;
+            var self = this;
             this.resetBtn.addEventListener("click", function() {
                 self.playBtn.disabled = false;
                 self.pauseBtn.disabled = true;
                 //play.removeAttribute("disabled");
                 clearInterval(self.idSetInterval);
-                for (let j=0; j < self.cells.length; j++) {
+                for (var j=0; j < self.cells.length; j++) {
                         if (self.cells[j].className.indexOf("live") !== -1) {
                             self.cells[j].classList.toggle("live");
                         }
@@ -197,16 +197,16 @@ document.addEventListener("DOMContentLoaded", function(){
     };
 
     // setting the maxWidth and maxHeight of the board based on window inner sizes
-    let maxWidth = Math.floor(window.innerWidth/10) - 20;
-    let maxHeight = Math.floor(window.innerHeight/10) - 20;
+    var maxWidth = Math.floor(window.innerWidth/10) - 20;
+    var maxHeight = Math.floor(window.innerHeight/10) - 20;
 
     function handleGameStart(){
         document.querySelector('.introduction').style.display = 'none';
-        let widthSize = prompt("Set the board width (1 to " + maxWidth + ")");
+        var widthSize = prompt("Set the board width (1 to " + maxWidth + ")");
         while ( !( (Number(widthSize) > 0) && (Number(widthSize) <= maxWidth) ) ){
             widthSize = prompt("Chosen width must be from 1 to "+ maxWidth + "\n Set the board width");
         }
-        let heightSize = prompt("Set the board height (1 to " + maxHeight + ")");
+        var heightSize = prompt("Set the board height (1 to " + maxHeight + ")");
         while ( !( (Number(heightSize) > 0) && (Number(heightSize) <= maxHeight) ) ){
             heightSize = prompt("Chosen height must be from 1 to "+ maxHeight + "\n Set the board height");
         }
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.querySelector('.board_container').style.display = 'block';
 
         // creating and starting the game
-        let game = new GameOfLife(widthSize, heightSize);
+        var game = new GameOfLife(widthSize, heightSize);
         game.start();
     }
 
